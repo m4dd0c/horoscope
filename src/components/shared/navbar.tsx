@@ -35,7 +35,7 @@ const Navbar = () => {
   return (
     <div
       className={cn(
-        "fixed top-0 inset-x-0 z-50 transition-all duration-300",
+        "fixed top-0 inset-x-0 z-50 transition-all duration-300 text-foreground",
         scrolled
           ? "backdrop-blur-md shadow-md bg-zinc-900/60"
           : "bg-transparent",
@@ -55,8 +55,7 @@ const Navbar = () => {
                     <Avatar>
                       <AvatarImage src="/placeholder.png" alt="User avatar" />
                       <AvatarFallback>
-                        {user?.name?.split(" ")?.[0]?.[0]}
-                        {user?.name?.split(" ")?.[1]?.[0]}
+                        {user?.name?.[0].toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
                   </Link>

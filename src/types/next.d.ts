@@ -9,6 +9,7 @@ declare module "next/server" {
 export interface iUser {
   name: string;
   dob: string;
+  isVerified: boolean;
 }
 export interface iDailyHoroscope {
   horoscope_data: string;

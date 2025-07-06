@@ -1,9 +1,8 @@
-import { NextRequest } from "next/server";
-import { auth } from "./lib/middlewares/auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { rateLimiter } from "./lib/middlewares/rateLimiter";
+import { auth } from "./lib/middlewares/auth";
 
-const authPaths = ["/api/user", "/api/horoscope"];
+const authPaths = ["/api/user", "/api/horoscope", "/api/resend"];
 const rateLimitPaths = ["/api/signin", "/api/signup", "/api/horoscope"];
 
 const doesInclude = (url: URL, paths?: string[]): boolean => {
@@ -19,6 +18,7 @@ export async function middleware(req: NextRequest) {
       const res = await rateLimiter(req);
       if (res) return res;
     }
+
     // Conditions for different middleware
     if (doesInclude(url)) {
       const res = await auth(req);

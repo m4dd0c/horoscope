@@ -2,6 +2,7 @@ import * as jose from "jose";
 import { Types } from "mongoose";
 
 const encodedSecret = new TextEncoder().encode(process.env.JWT_SECRET);
+
 export const encodeJWT = async (payload: {
   userId: Types.ObjectId | string;
 }) => {
@@ -10,6 +11,7 @@ export const encodeJWT = async (payload: {
     .sign(encodedSecret);
   return token;
 };
+
 export const decodeJWT = async (token: string) => {
   const decode = await jose.jwtVerify(token, encodedSecret);
   return decode;

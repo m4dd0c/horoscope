@@ -28,7 +28,6 @@ export async function auth(req: NextRequest) {
         { status: 401 },
       );
 
-    console.log("decode", decode.payload);
     const res = NextResponse.next();
 
     // can't do req.userId because NextRequest doesn't persists between routes and middlewares

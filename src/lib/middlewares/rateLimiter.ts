@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-const RATE_LIMIT = 5; // Max requests allowed
+const RATE_LIMIT = 15; // Max requests allowed
 const WINDOW_MS = 60 * 1000; // 1 minute window
 const requests = new Map<string, number[]>(); // Store IP & timestamps
 

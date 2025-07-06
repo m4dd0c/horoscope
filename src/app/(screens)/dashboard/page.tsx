@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -15,17 +16,27 @@ import useHoroscope from "@/hooks/useHoroscope";
 import { format } from "date-fns";
 import withAuth from "@/components/withAuth";
 import { useAuth } from "@/hooks/useAuth";
+import { instance } from "@/lib/axios.instance";
+import { Button } from "@/components/ui/button";
 
 function DashboardPage() {
-  const { loading: userLoading, user } = useAuth();
+  const { loading: userLoading, user, refreshUser } = useAuth();
   const {
     loading: horoscopeLoading,
     todaysHoroscope,
     weeklyHoroscope,
   } = useHoroscope();
 
-  if (userLoading || horoscopeLoading) return <Loading />;
+  useEffect(() => {
+    refreshUser();
+  }, []);
 
+  const resendVerificationToken = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    await instance.get("/resend");
+  };
+
+  if (userLoading || horoscopeLoading) return <Loading />;
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br dark:from-zinc-800 dark:to-zinc-950 from-zinc-50 to-zinc-150 pt-14 p-4">
       <div className="max-w-4xl mx-auto space-y-8">
@@ -36,16 +47,13 @@ function DashboardPage() {
         {/* Profile Section */}
         <Card className="dark:bg-zinc-950/50 border-none">
           <CardHeader>
-            <CardTitle>Welcome back, Star Gazer 🌌</CardTitle>
+            <CardTitle>Welcome back, Star Gazer</CardTitle>
           </CardHeader>
           {user && (
             <CardContent className="flex items-center gap-4">
               <Avatar>
                 <AvatarImage src="/placeholder.png" alt="User avatar" />
-                <AvatarFallback>
-                  {user?.name?.split(" ")?.[0]?.[0]}
-                  {user?.name?.split(" ")?.[1]?.[0]}
-                </AvatarFallback>
+                <AvatarFallback>{user?.name?.[0].toUpperCase()}</AvatarFallback>
               </Avatar>
               <div>
                 <p className="text-lg font-semibold">{user?.name}</p>
@@ -55,6 +63,18 @@ function DashboardPage() {
                 <p className="text-sm text-foreground/50">
                   DOB: {format(new Date(user?.dob), "MMM dd, yyyy")}
                 </p>
+                {!user?.isVerified && (
+                  <p className="text-sm text-orange-500">
+                    Please verify your email. Check your email or
+                    <Button
+                      variant={"link"}
+                      onClick={resendVerificationToken}
+                      className="underline text-orange-500 cursor-pointer"
+                    >
+                      Resend Email
+                    </Button>
+                  </p>
+                )}
               </div>
             </CardContent>
           )}
@@ -63,7 +83,7 @@ function DashboardPage() {
         {/* Horoscope Section */}
         <Card className="dark:bg-zinc-950/50 border-none">
           <CardHeader>
-            <CardTitle>Today's Horoscope 🌞</CardTitle>
+            <CardTitle>Today's Horoscope</CardTitle>
             <CardDescription>{todaysHoroscope?.date}</CardDescription>
           </CardHeader>
           <CardContent>
@@ -75,7 +95,7 @@ function DashboardPage() {
 
         <Card className="dark:bg-zinc-950/50 border-none">
           <CardHeader>
-            <CardTitle>7 Day Horoscope Forecast 📅</CardTitle>
+            <CardTitle>7 Day Horoscope Forecast</CardTitle>
             <CardDescription>{weeklyHoroscope?.week}</CardDescription>
           </CardHeader>
           <CardContent>
@@ -86,10 +106,12 @@ function DashboardPage() {
         </Card>
 
         {/* mcp or gemini */}
-        <AiClient
-          todaysHoroscope={todaysHoroscope}
-          weeklyHoroscope={weeklyHoroscope}
-        />
+        {todaysHoroscope && weeklyHoroscope && (
+          <AiClient
+            todaysHoroscope={todaysHoroscope}
+            weeklyHoroscope={weeklyHoroscope}
+          />
+        )}
       </div>
     </div>
   );

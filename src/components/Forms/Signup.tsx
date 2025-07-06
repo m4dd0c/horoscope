@@ -12,6 +12,7 @@ import {
 import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
+import Link from "next/link";
 import {
   Popover,
   PopoverContent,
@@ -158,6 +159,9 @@ const Signup = () => {
           {loading ? "Creating Account..." : "Create Account"}
         </Button>
       </form>
+      <Link href="/signin" className="text-xs text-center block mt-2 underline">
+        Already have an account? Sign-in now
+      </Link>
     </Form>
   );
 };

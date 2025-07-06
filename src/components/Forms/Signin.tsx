@@ -16,6 +16,7 @@ import {
 import { instance } from "@/lib/axios.instance";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 
 const Signin = () => {
   const [loading, setLoading] = useState(false);
@@ -80,6 +81,9 @@ const Signin = () => {
           {loading ? "Signing in..." : "Sign In"}
         </Button>
       </form>
+      <Link href="/signup" className="text-xs text-center block mt-2 underline">
+        Don't have an account? Sign-up now
+      </Link>
     </Form>
   );
 };

@@ -22,7 +22,9 @@ export default function Home() {
             Daily guidance based on your zodiac, birth chart, and cosmic energy.
           </p>
           <Button asChild variant="outline">
-            <Link href="/signin">Get Started with Celestia</Link>
+            <Link className="text-foreground" href="/signin">
+              Get Started with Celestia
+            </Link>
           </Button>
         </div>
       </section>

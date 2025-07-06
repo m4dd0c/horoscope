@@ -14,17 +14,20 @@ export const GET = async (req: NextRequest) => {
     }
     // Connect to the database
     await connectDB();
+
     // Find user by verification token
     const user = await User.findOne({
       "verificationToken.token": token,
-      "verificationToken.expires": { $gt: new Date() }, // Check if token is still valid
+      "verificationToken.expires": { $gt: new Date() },
     });
+
     if (!user) {
       return NextResponse.json(
-        { message: "Invalid or expired token", success: false },
+        { message: "", success: false },
         { status: 400 },
       );
     }
+
     // Mark user as verified
     user.isVerified = true;
     user.verificationToken.token = undefined;
