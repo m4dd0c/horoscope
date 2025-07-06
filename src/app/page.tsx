@@ -16,14 +16,14 @@ export default function Home() {
         <div className="absolute inset-0  bg-gradient-to-b from-transparent to-black" />
         <div className="relative z-10 h-full flex flex-col items-center justify-center space-y-6 px-4">
           <h5 className="text-xl">Welcome to</h5>
-          <h1 className="font-playfair text-5xl font-bold">Celestia</h1>
+          <h1 className="font-playfair text-5xl font-bold">Zodica</h1>
           <p className="text-xl max-w-xl">
             Personalized astrology at your fingertips. <br />
             Daily guidance based on your zodiac, birth chart, and cosmic energy.
           </p>
           <Button asChild variant="outline">
             <Link className="text-foreground" href="/signin">
-              Get Started with Celestia
+              Get Started with Zodica
             </Link>
           </Button>
         </div>
@@ -33,7 +33,7 @@ export default function Home() {
         <div className="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-10">
           <div className="w-full md:w-1/2">
             <h1 className="font-playfair text-3xl mb-4">
-              We can find your Future <br /> With Celestia
+              We can find your Future <br /> With Zodica
             </h1>
             <p className="text-md leading-relaxed">
               We analyze your zodiac, birth chart, and daily transits. Then our
@@ -50,7 +50,7 @@ export default function Home() {
           <div className="w-full md:w-1/2 flex justify-center">
             <Image
               src={heroSub}
-              alt="celestial chart"
+              alt="Zodica chart"
               height={500}
               width={500}
               className="w-auto h-auto max-w-sm"

@@ -1,12 +1,12 @@
-# Celestia
+# Zodica
 
 AI-powered horoscope app that generates personalized astrological insights using Gemini and real planetary data.
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/m4dd0c/celestia.git
-cd celestia
+git clone https://github.com/m4dd0c/zodica.git
+cd zodica
 npm install
 cp .env.example .env
 npm run dev

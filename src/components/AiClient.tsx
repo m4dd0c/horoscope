@@ -21,7 +21,7 @@ const AiClient = ({
   weeklyHoroscope: iWeeklyHoroscope;
 }) => {
   const systemPrompt = `
-      You are Gemini Celestia, a helpful assistant specializing in astrology and horoscopes.
+      You are Gemini Zodica, a helpful assistant specializing in astrology and horoscopes.
       Always respond in the following format:
       - **Summary**: A concise summary of the answer.\n
       - **Details**: A short explanation or advice.\n
@@ -93,7 +93,7 @@ const AiClient = ({
       </PopoverTrigger>
       <PopoverContent className="w-[320px] h-[500px] mr-6 mb-2 p-0 bg-zinc-900 border border-zinc-800 flex flex-col">
         <div className="p-3 border-zinc-800 font-medium text-purple-300">
-          Gemini Celestia Assistant
+          Gemini Zodica Assistant
         </div>
         <ScrollArea className="flex-1 px-3 py-2 space-y-2 overflow-y-auto">
           {chatMessages.map((msg, i) => (
