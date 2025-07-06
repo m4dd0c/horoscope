@@ -17,7 +17,7 @@ const withAuth = (WrappedComponent: any) => {
           if (!data?.user) {
             router.replace("/signin");
           }
-        } catch (err) {
+        } catch (_err) {
           router.replace("/signin");
         } finally {
           setLoading(false);

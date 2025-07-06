@@ -1,11 +1,11 @@
 import { headers } from "next/headers";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const RATE_LIMIT = 15; // Max requests allowed
 const WINDOW_MS = 60 * 1000; // 1 minute window
 const requests = new Map<string, number[]>(); // Store IP & timestamps
 
-export const rateLimiter = async (req: Request) => {
+export const rateLimiter = async (_req: NextRequest) => {
   try {
     const headerList = await headers();
     const ip = headerList.get("x-forwarded-for") || "unknown"; // Get IP address
@@ -31,7 +31,7 @@ export const rateLimiter = async (req: Request) => {
     requests.set(ip, filteredTimestamps);
 
     return null;
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
       { message: "Internal server error" },
       { status: 500 },
