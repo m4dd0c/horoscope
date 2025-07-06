@@ -86,7 +86,10 @@ function DashboardPage() {
         </Card>
 
         {/* mcp or gemini */}
-        <AiClient />
+        <AiClient
+          todaysHoroscope={todaysHoroscope}
+          weeklyHoroscope={weeklyHoroscope}
+        />
       </div>
     </div>
   );
