@@ -1,6 +1,6 @@
 # Celestia
 
-AI-powered horoscope app that generates personalized astrological insights using OpenAI and real planetary data.
+AI-powered horoscope app that generates personalized astrological insights using Gemini and real planetary data.
 
 ## Quick Start
 
