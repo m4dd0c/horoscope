@@ -29,7 +29,7 @@ function DashboardPage() {
 
   useEffect(() => {
     refreshUser();
-  }, [refreshUser]);
+  }, []);
 
   const resendVerificationToken = async (e: React.MouseEvent) => {
     e.stopPropagation();
