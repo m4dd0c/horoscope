@@ -5,11 +5,11 @@ AI-powered horoscope app that generates personalized astrological insights using
 ## Quick Start
 
 ```bash
-git clone https://github.com/your-username/celestia.git
+git clone https://github.com/m4dd0c/celestia.git
 cd celestia
 npm install
 cp .env.example .env
-npm dev
+npm run dev
 ```
 
 ## Environment Variables
