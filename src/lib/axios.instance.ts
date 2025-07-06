@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "sonner";
 export const instance = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}/api` || "localhost:3000/api",
   headers: {
     "Content-Type": "application/json",
   },
